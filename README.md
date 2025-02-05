@@ -6,7 +6,7 @@ $ mvn clean install
 $ java -jar target/grizzly-2222-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-### Setup Apache(httpd) as proxy
+### Setup Apache(httpd) as proxy (on port 8090)
 ```
 # cat > /etc/httpd/conf.d/grizzly.conf << EOF
 LoadModule proxy_module modules/mod_proxy.so
