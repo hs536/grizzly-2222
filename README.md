@@ -6,7 +6,7 @@ $ mvn clean install
 $ java -jar target/grizzly-2222-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-### Setup Apache (proxy)
+### Setup Apache(httpd)
 ```
 # cat > /etc/httpd/conf.d/grizzly.conf << EOF
 LoadModule proxy_module modules/mod_proxy.so
@@ -22,6 +22,7 @@ EOF
 ```
 
 ### Reproduction
+curl receives a 100-continue from Apache(httpd) and sends the body, but Apache(httpd) does not receive a 100-continue from Grizzly and times out.
 ```
 $ curl -v -s -X POST -H "Expect: 100-continue" -H "Transfer-Encoding: chunked" --data-binary "chunk1\nchunk2\nchunk3\r\n\r\n" http://localhost:8090/grizzly
 *   Trying ::1...
